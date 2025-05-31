@@ -1,24 +1,12 @@
-# Stellaris Checksum Patcher (Enable Achievements)
-
-[![Downloads@latest](https://img.shields.io/github/downloads/r0fld4nc3/Stellaris-Exe-Checksum-Patcher/StellarisChecksumPatcher.exe?style=for-the-badge&logo=square&logoColor=blue&label=Windows)](https://github.com/r0fld4nc3/stellaris-exe-checksum-patcher/releases/latest/download/StellarisChecksumPatcher.exe)
-[![Downloads@latest](https://img.shields.io/github/downloads/r0fld4nc3/Stellaris-Exe-Checksum-Patcher/StellarisChecksumPatcher-linux?style=for-the-badge&logo=linux&label=Linux)](https://github.com/r0fld4nc3/stellaris-exe-checksum-patcher/releases/latest/download/StellarisChecksumPatcher-linux)
-[![Release Version Badge](https://img.shields.io/github/v/release/r0fld4nc3/stellaris-exe-checksum-patcher?style=for-the-badge)](https://github.com/r0fld4nc3/stellaris-exe-checksum-patcher/releases)
-
-# ❗ Note ❗
-
-The cause of the issue where after an update achievements were no longer being triggered has been identified. The issue is not that anything has changed from Paradox's side or that the Patcher needed adjusting to any potential new changes. The issue is with game updates and save games where sometimes saves can lose their trait of being elligible for achievements across patches. I will be working on a "Fix Save Game" patch option as well to include in the Patcher in the future, to fix this issue.
+# Stellaris Checksum Patcher
 
 ## 📣 Summary
 
-❗ Patching currently only supported on Windows.
-
-❗ Patching testing on MacOS and Linux.
-
-❗ Save fixing not yet done for Windows, MacOS and Linux.
-
 An easy and painless way to patch the game's executable so that mods are compatible with Ironman mode therefore also enabling the pursuit of Achievements with a modded game.
 
-Download the executable by clicking the above **``Badges``** or in [Releases](https://github.com/r0fld4nc3/stellaris-exe-checksum-patcher/releases).
+<p align="center">
+<img src="https://github.com/r0fld4nc3/stellaris-exe-checksum-patcher/blob/main/media/stellaris-checksum-patcher-06.png" width="762">
+</p>
 
 ## ❗ Disclaimer ❗
 * Remember to **not** upload the modified Stellaris executable to download or distribution sites.
@@ -27,11 +15,8 @@ Download the executable by clicking the above **``Badges``** or in [Releases](ht
 * The goal of this is to simply offer a faster and more automated way to enable mod compatibility with Ironman and Achievements for a better personal experience.
 * Check notes at the end of this file on how to verify authenticity of the tool.
 
-<p align="center">
-<img src="https://github.com/r0fld4nc3/stellaris-exe-checksum-patcher/blob/main/media/stellaris-checksum-patcher-06.png" width="762">
-</p>
 
-## 🟢 Patches
+## 🟢 Features:
 * **Patch Executable**
   * This method will automatically check for a Steam installation and patch the executable.
   * It will create a backup of the original adding a _.orig_ to the end of the file name.
@@ -44,14 +29,13 @@ Download the executable by clicking the above **``Badges``** or in [Releases](ht
   * Sets Ironman flag(s) to "yes".
 
 # 🗒️ Notes
-## "Windows protected your PC" Warning
-This is a common issue with unsigned or newly signed certificates.
-  
-There isn't much I can do about it apart from generating a signature and letting it be evaluated over time. I can assure you this is nothing to be concerned of, it is simply Windows notifying that it might not recognise the signature from the common signatures pool.
 
-**This tool is currently only hosted on this GitHub project. I included the official signing timestamp of each file in each release so check against those if you must.**
-  
-The provided software is completely safe.
+The cause of the issue where after an update, achievements were no longer being triggered has been identified. 
+The issue is with game updates and save games where sometimes saves can lose their trait of being elligible for achievements across patches.
+I will be working on a "Fix Save Game" patch option as well to include in the Patcher in the future, to fix this issue.
+
+❗ Save fixing not yet done for Windows, MacOS and Linux.
+
 
 # 🔎 My Stance
 The sole reason for this patch comes mostly for the fact that we are barred from amazing Quality of Life and Visual mods if we wish to hunt for those Achievements, which can only be obtained by playing Ironman. 
@@ -65,4 +49,9 @@ I understand I cannot regulate this either and therefore ask for sensibility and
 ## Sources
 This method was a side project mainly for learning purposes and honing skills. _(Also because I don't have MSWord lol)_
 
-It was based on the original guide here: https://steamcommunity.com/sharedfiles/filedetails/?id=2719382752
+It was based on an original guide here: https://steamcommunity.com/sharedfiles/filedetails/?id=2719382752
+
+and forked from https://github.com/r0fld4nc3/Stellaris-Exe-Checksum-Patcher when the v4.0 Stellaris update released so I could continue my achievement hunts!
+
+I build this version using Ubuntu linux and VScode. For instructions how to setup an enviroment goto:
+https://github.com/thecosmicslug/Stellaris-Exe-Checksum-Patcher/blob/main/BUILDING.MD
