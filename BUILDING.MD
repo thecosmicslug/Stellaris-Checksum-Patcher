@@ -12,9 +12,9 @@ VSCode can be downloaded free from https://code.visualstudio.com/docs/setup/linu
 
 ### Setting up VSCode
 * Install Python VSCode extension from the marketplace.
-* Create a virtual enviroment in VSCode (.venv folder) and activate it.
+* Create a virtual environment in VSCode (.venv folder) and activate it.
 
-From the built-in terminal we can setup the dependancies needed:
+From the built-in terminal we can setup the dependencies needed:
 
 * `pip install PySide6`
 * `pip install vdf`

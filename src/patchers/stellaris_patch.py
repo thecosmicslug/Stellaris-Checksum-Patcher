@@ -21,9 +21,9 @@ BIN_PATH_POSTPEND = ""
 
 def update_patcher_globals():
     """
-    Update Patcher Globals to patch mods acceptance with Achievements/Ironman
+    Update Patcher Globals to patch mods acceptance with Achievements
     """
-    log.info("Updating Patcher Globals to patch mods acceptance with Achievements/Ironman.", silent=True)
+    log.info("Updating Patcher Globals to patch mods with Achievements.", silent=True)
     global EXE_DEFAULT_FILENAME, HEX_FIND, HEX_REPLACE, PATCH_PATTERN, BIN_PATH_POSTPEND, PATCH_COMPLETE_PATTERN
 
     if OS.WINDOWS:
