@@ -19,7 +19,6 @@ class Settings:
             "stellaris-proton-install-path": "",
             "steam-install-path": "",
             "save-games-path": "",
-            "patched-block": "",
             "exe-name": "",
             "exe-proton-name": "",
         }
@@ -88,15 +87,6 @@ class Settings:
     def set_save_games_dir(self, save_games_dir: str):
         self.patcher_settings["save-games-path"] = str(save_games_dir).replace('\\', '/').replace('\\\\', '/')
         log.info(f"Saving games directory: {self.patcher_settings.get('save-games-path')}")
-        self.save_config()
-
-    def get_patched_block(self) -> str:
-        # self.load_config()
-        return self.patcher_settings.get("patched-block")
-
-    def set_patched_block(self, str_to_set: str):
-        self.patcher_settings["patched-block"] = str(str_to_set)
-        log.info(f"Saving patched block: {self.patcher_settings.get('patched-block')}")
         self.save_config()
 
     def get_update_last_checked(self) -> int:

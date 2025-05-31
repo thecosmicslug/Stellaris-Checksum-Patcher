@@ -19,7 +19,7 @@
   },
   {
    "optionDest": "icon_file",
-   "value": "~/Documents/GitHub/Python/Stellaris-Exe-Checksum-Patcher/_icon/stellaris_checksum_patcher_icon.ico"
+   "value": "./_icon/stellaris_checksum_patcher_icon.ico"
   },
   {
    "optionDest": "name",
@@ -59,11 +59,11 @@
   },
   {
    "optionDest": "datas",
-   "value": "~/Documents/GitHub/Python/Stellaris-Exe-Checksum-Patcher/src:."
+   "value": "./src:."
   },
   {
    "optionDest": "pathex",
-   "value": "~/Documents/Software/Python/VirtualEnvs/venv-stellaris-checksum-patcher/lib/python3.11/site-packages"
+   "value": "./.venv/lib/python3.12/site-packages"
   }
  ],
  "nonPyinstallerOptions": {

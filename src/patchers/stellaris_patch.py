@@ -15,12 +15,13 @@ EXE_DEFAULT_FILENAME = ""
 HEX_FIND = ""
 HEX_REPLACE = ""
 PATCH_PATTERN = None
+PATCH_COMPLETE_PATTERN = None
 BIN_PATH_POSTPEND = ""
 
 
 def update_patcher_globals():
     log.info("Updating Patcher Globals for 1st patch...", silent=True)
-    global EXE_DEFAULT_FILENAME, HEX_FIND, HEX_REPLACE, PATCH_PATTERN, BIN_PATH_POSTPEND
+    global EXE_DEFAULT_FILENAME, HEX_FIND, HEX_REPLACE, PATCH_PATTERN, BIN_PATH_POSTPEND, PATCH_COMPLETE_PATTERN
 
     if OS.WINDOWS:
         log.info("Setting globals to Windows", silent=True)
@@ -29,6 +30,7 @@ def update_patcher_globals():
         HEX_FIND = "85C0"
         HEX_REPLACE = "31C0"
         PATCH_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_REPLACE, re.IGNORECASE)
     elif OS.LINUX:
         if not OS.LINUX_PROTON:
             log.info("Setting globals to Linux Native", silent=True)
@@ -37,6 +39,7 @@ def update_patcher_globals():
             HEX_FIND = "85DB"
             HEX_REPLACE = "31DB"
             PATCH_PATTERN = re.compile(r"E89B2C600031F6%s" % HEX_FIND, re.IGNORECASE)
+            PATCH_COMPLETE_PATTERN = re.compile(r"E89B2C600031F6%s" % HEX_REPLACE, re.IGNORECASE)
         else:
             log.info("Setting globals to Linux Proton", silent=True)
             # Linux Proton (Windows equivalent?)
@@ -44,6 +47,7 @@ def update_patcher_globals():
             HEX_FIND = "85C0"
             HEX_REPLACE = "31C0"
             PATCH_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_FIND, re.IGNORECASE)
+            PATCH_COMPLETE_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_REPLACE, re.IGNORECASE)
     elif OS.MACOS:
         log.info("Setting globals to Linux macOS", silent=True)
         # The actual executable is inside the .app -> /.../stellaris.app/Contents/MacOS/stellaris
@@ -53,12 +57,14 @@ def update_patcher_globals():
         HEX_FIND = "85DB"
         HEX_REPLACE = "31DB"
         PATCH_PATTERN = re.compile(r"89C3E851.{8,10}%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = "MAC-TODO-STILL"
     else:
         log.warning("Setting globals to we shouldn't be here, but here we are...", silent=True)
         EXE_DEFAULT_FILENAME = "stellaris.wtf"
         HEX_FIND = "85C0"
         HEX_REPLACE = "31C0"
         PATCH_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_REPLACE, re.IGNORECASE)
 
     log.info(f"{EXE_DEFAULT_FILENAME=}", silent=True)
     log.info(f"{BIN_PATH_POSTPEND=}", silent=True)
@@ -68,7 +74,7 @@ def update_patcher_globals():
 
 def update_patcher_globals2():
     log.info("Updating Patcher Globals for 2nd patch...", silent=True)
-    global EXE_DEFAULT_FILENAME, HEX_FIND, HEX_REPLACE, PATCH_PATTERN, BIN_PATH_POSTPEND
+    global EXE_DEFAULT_FILENAME, HEX_FIND, HEX_REPLACE, PATCH_PATTERN, BIN_PATH_POSTPEND, PATCH_COMPLETE_PATTERN
 
     if OS.WINDOWS:
         log.info("Setting globals to Windows", silent=True)
@@ -77,6 +83,7 @@ def update_patcher_globals2():
         HEX_FIND = "85C0"
         HEX_REPLACE = "31C0"
         PATCH_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_REPLACE, re.IGNORECASE)
     elif OS.LINUX:
         if not OS.LINUX_PROTON:
             log.info("Setting globals to Linux Native", silent=True)
@@ -85,6 +92,7 @@ def update_patcher_globals2():
             HEX_FIND = "85C0"
             HEX_REPLACE = "31C0"
             PATCH_PATTERN = re.compile(r"8B30BF13219D03E86400DAFE%s" % HEX_FIND, re.IGNORECASE)
+            PATCH_COMPLETE_PATTERN = re.compile(r"8B30BF13219D03E86400DAFE%s" % HEX_REPLACE, re.IGNORECASE)
         else:
             log.info("Setting globals to Linux Proton", silent=True)
             # Linux Proton (Windows equivalent?)
@@ -92,6 +100,7 @@ def update_patcher_globals2():
             HEX_FIND = "85C0"
             HEX_REPLACE = "31C0"
             PATCH_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_FIND, re.IGNORECASE)
+            PATCH_COMPLETE_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_REPLACE, re.IGNORECASE)
     elif OS.MACOS:
         log.info("Setting globals to Linux macOS", silent=True)
         # The actual executable is inside the .app -> /.../stellaris.app/Contents/MacOS/stellaris
@@ -101,12 +110,14 @@ def update_patcher_globals2():
         HEX_FIND = "85DB"
         HEX_REPLACE = "31DB"
         PATCH_PATTERN = re.compile(r"89C3E851.{8,10}%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = "MAC-TODO-STILL"
     else:
         log.warning("Setting globals to we shouldn't be here, but here we are...", silent=True)
         EXE_DEFAULT_FILENAME = "stellaris.wtf"
         HEX_FIND = "85C0"
         HEX_REPLACE = "31C0"
         PATCH_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_REPLACE, re.IGNORECASE)
 
     log.info(f"{EXE_DEFAULT_FILENAME=}", silent=True)
     log.info(f"{BIN_PATH_POSTPEND=}", silent=True)
@@ -151,21 +162,15 @@ def locate_game_executable() -> Union[Path, None]:
 def is_patched(file_path: Path) -> bool:
     _fwd_slashed_path = str(file_path).replace('\\', '/').replace('\\\\', '/')
     log.info(f"Checking if patched: {_fwd_slashed_path}")
-    patched_pattern = settings.get_patched_block()
-    log.info(f"Patched pattern (settings): {patched_pattern}")
-
-    if not patched_pattern:
-        return False
+    log.info(f"Patched pattern: {PATCH_PATTERN.pattern}")
 
     with open(file_path, 'rb') as file:
         binary_data = file.read()
 
     binary_hex = binascii.hexlify(binary_data).decode()
 
-    # Define regex pattern to find 31DB (ignoring casing) at the end of the line
-    regex_pattern = re.compile(patched_pattern, re.IGNORECASE)
-
-    match = regex_pattern.search(binary_hex)
+    # Search for PATCH_COMPLETE_PATTERN to confirm if its been applied.
+    match = PATCH_COMPLETE_PATTERN.search(binary_hex)
     if match:
         matched_line = binary_hex[match.start():match.end()].upper()
         log.info(f"Matched hex: {matched_line}")
@@ -293,8 +298,6 @@ def patch(file_path: Path, duplicate_to: Path = None):
                 with open(duplicate_to_fp, 'wb') as duplicate_file:
                     duplicate_file.write(binary_data_patched)
 
-            # Save patched block for comparison
-            settings.set_patched_block(str(patched_line).upper())
             log.info("Patch applied successfully.")
             patch_success = True
         else:

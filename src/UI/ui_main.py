@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import json
 from pathlib import Path
 import subprocess
 from PySide6.QtWidgets import (
@@ -415,6 +416,11 @@ class StellarisChecksumPatcherGUI(QWidget):
             else:
                 settings.set_stellaris_proton_install_path(str(self.install_dir))
 
+            # Print Stellaris version for debug logs.
+            with open(str(self.install_dir) + "/launcher-settings.json", 'r') as fcc_file:
+                fcc_data = json.load(fcc_file)
+            log.info("Stellaris version detected: " + fcc_data["version"])
+
             # Check if it is patched
             is_patched = stellaris_patch.is_patched(game_executable)
 
@@ -437,7 +443,7 @@ class StellarisChecksumPatcherGUI(QWidget):
                 
                 # Check it applied.
                 if not patched:
-                    log.error(f"Failed to patch game binary.\n")
+                    log.error(f"Failed to apply first patch.")
                     self.set_terminal_clickable(True)
                     return False
                 
@@ -448,7 +454,7 @@ class StellarisChecksumPatcherGUI(QWidget):
 
                 # Check second patch applied.
                 if not patched:
-                    log.error(f"Failed to patch game binary.\n")
+                    log.error(f"Failed to apply second patch.")
                     self.set_terminal_clickable(True)
                     return False
 
