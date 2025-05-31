@@ -7,7 +7,7 @@
   },
   {
    "optionDest": "filenames",
-   "value": "~/Documents/GitHub/Python/Stellaris-Exe-Checksum-Patcher/src/main.py"
+   "value": "./src/main.py"
   },
   {
    "optionDest": "onefile",
@@ -23,7 +23,7 @@
   },
   {
    "optionDest": "name",
-   "value": "Stellaris-Checkum-Patcher-linux"
+   "value": "Stellaris-Checksum-Patcher-linux"
   },
   {
    "optionDest": "clean_build",
@@ -31,7 +31,7 @@
   },
   {
    "optionDest": "strip",
-   "value": false
+   "value": true
   },
   {
    "optionDest": "noupx",
@@ -64,6 +64,10 @@
   {
    "optionDest": "pathex",
    "value": "./.venv/lib/python3.12/site-packages"
+  },
+  {
+   "optionDest": "datas",
+   "value": "./LICENSE:."
   }
  ],
  "nonPyinstallerOptions": {

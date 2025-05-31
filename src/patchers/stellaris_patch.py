@@ -20,7 +20,10 @@ BIN_PATH_POSTPEND = ""
 
 
 def update_patcher_globals():
-    log.info("Updating Patcher Globals for 1st patch...", silent=True)
+    """
+    Update Patcher Globals to patch mods acceptance with Achievements/Ironman
+    """
+    log.info("Updating Patcher Globals to patch mods acceptance with Achievements/Ironman.", silent=True)
     global EXE_DEFAULT_FILENAME, HEX_FIND, HEX_REPLACE, PATCH_PATTERN, BIN_PATH_POSTPEND, PATCH_COMPLETE_PATTERN
 
     if OS.WINDOWS:
@@ -73,7 +76,10 @@ def update_patcher_globals():
     log.info(f"{PATCH_PATTERN=}", silent=True)
 
 def update_patcher_globals2():
-    log.info("Updating Patcher Globals for 2nd patch...", silent=True)
+    """
+    Update Patcher Globals to patch modified checksum warning
+    """
+    log.info("Updating Patcher Globals to patch modified checksum warning.", silent=True)
     global EXE_DEFAULT_FILENAME, HEX_FIND, HEX_REPLACE, PATCH_PATTERN, BIN_PATH_POSTPEND, PATCH_COMPLETE_PATTERN
 
     if OS.WINDOWS:
@@ -137,7 +143,6 @@ def locate_game_executable() -> Union[Path, None]:
     if not OS.LINUX_PROTON:
         stellaris_install_path = steam.get_game_install_path(TITLE_NAME)
     else:
-        log.warning("Linux Proton Patching is still under construction...")
         stellaris_install_path = steam.get_game_install_path(TITLE_NAME)
 
     log.debug(f"{stellaris_install_path=}")
@@ -243,7 +248,7 @@ def create_backup(file_path: Path, overwrite=False) -> Path | None:
     return backup_file
 
 
-def patch(file_path: Path, duplicate_to: Path = None):
+def patch(file_path: Path)-> bool:
     if not file_path.exists():
         log.warning(f"{file_path} does not exist.")
         return False
@@ -259,7 +264,7 @@ def patch(file_path: Path, duplicate_to: Path = None):
 
     binary_hex = binascii.hexlify(binary_data).decode()
 
-    # Define regex pattern to find 85DB (ignoring casing) at the end of the line
+    # Define regex pattern to find HEX_FIND (ignoring casing) at the end of the line
     log.debug(f"{PATCH_PATTERN=}")
     regex_pattern = PATCH_PATTERN
 
@@ -269,7 +274,7 @@ def patch(file_path: Path, duplicate_to: Path = None):
         matched_line = binary_hex[match.start():match.end()]
         log.info(f"Matched hex: {str(matched_line).upper()}")
 
-        # Locate the index of the last occurrence of '85DB' in the matched line
+        # Locate the index of the last occurrence of 'HEX_FIND' in the matched line
         hex_index = matched_line.upper().rfind(HEX_FIND)
 
         if hex_index != -1:
@@ -288,15 +293,6 @@ def patch(file_path: Path, duplicate_to: Path = None):
             log.info(f"Writing file {file_path}")
             with open(file_path, 'wb') as file:
                 file.write(binary_data_patched)
-
-            if duplicate_to:
-                if not duplicate_to.is_file():
-                    duplicate_to_fp = duplicate_to.parent / file_path.name
-                else:
-                    duplicate_to_fp = duplicate_to / file_path.name
-                log.info(f"Writing duplicate to {duplicate_to_fp}")
-                with open(duplicate_to_fp, 'wb') as duplicate_file:
-                    duplicate_file.write(binary_data_patched)
 
             log.info("Patch applied successfully.")
             patch_success = True
