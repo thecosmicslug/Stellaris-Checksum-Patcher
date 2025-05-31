@@ -52,4 +52,4 @@ and forked from https://github.com/r0fld4nc3/Stellaris-Exe-Checksum-Patcher by `
 previously had been using Ghidra and the guide at: https://steamcommunity.com/sharedfiles/filedetails/?id=2460079052
 
 I build this version using Ubuntu linux and VScode. For instructions how to setup an environment goto:
-https://github.com/thecosmicslug/Stellaris-Exe-Checksum-Patcher/blob/main/BUILDING.MD
+https://github.com/thecosmicslug/Stellaris-Checksum-Patcher/blob/main/BUILDING.MD
