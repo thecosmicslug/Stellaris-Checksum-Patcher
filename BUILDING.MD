@@ -26,7 +26,9 @@ It is important to run these commands from the built-in terminal or it will like
 
 ### Debugging
 
-Now we can make changes to the code and run them by pressing **F5**. Breakpoints can be set, changes can be made and tested with ease.
+Now we can make changes to the code and run them by pressing **F5**.
+
+Breakpoints can be set, changes can be made and tested with ease.
 
 
 ### Compiling for Linux
