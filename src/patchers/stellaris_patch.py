@@ -23,7 +23,6 @@ def update_patcher_globals():
     """
     Update Patcher Globals to patch mods acceptance with Achievements
     """
-    log.info("Updating Patcher Globals to patch mods with Achievements.", silent=True)
     global EXE_DEFAULT_FILENAME, HEX_FIND, HEX_REPLACE, PATCH_PATTERN, BIN_PATH_POSTPEND, PATCH_COMPLETE_PATTERN
 
     if OS.WINDOWS:
@@ -32,8 +31,8 @@ def update_patcher_globals():
         EXE_DEFAULT_FILENAME = "stellaris.exe"  # Game executable name plus extension
         HEX_FIND = "85C0"
         HEX_REPLACE = "31C0"
-        PATCH_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_FIND, re.IGNORECASE)
-        PATCH_COMPLETE_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_REPLACE, re.IGNORECASE)
+        PATCH_PATTERN = re.compile(r"488B1248.{20,26}%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = re.compile(r"488B1248.{20,26}%s" % HEX_REPLACE, re.IGNORECASE)
     elif OS.LINUX:
         if not OS.LINUX_PROTON:
             log.info("Setting globals to Linux Native", silent=True)
@@ -41,16 +40,16 @@ def update_patcher_globals():
             EXE_DEFAULT_FILENAME = "stellaris"
             HEX_FIND = "85DB"
             HEX_REPLACE = "31DB"
-            PATCH_PATTERN = re.compile(r"E89B2C600031F6%s" % HEX_FIND, re.IGNORECASE)
-            PATCH_COMPLETE_PATTERN = re.compile(r"E89B2C600031F6%s" % HEX_REPLACE, re.IGNORECASE)
+            PATCH_PATTERN = re.compile(r"488B30.{20,50}%s" % HEX_FIND, re.IGNORECASE)
+            PATCH_COMPLETE_PATTERN = re.compile(r"488B30.{20,50}%s" % HEX_REPLACE, re.IGNORECASE)
         else:
             log.info("Setting globals to Linux Proton", silent=True)
             # Linux Proton (Windows equivalent?)
             EXE_DEFAULT_FILENAME = "stellaris.exe"
             HEX_FIND = "85C0"
             HEX_REPLACE = "31C0"
-            PATCH_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_FIND, re.IGNORECASE)
-            PATCH_COMPLETE_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_REPLACE, re.IGNORECASE)
+            PATCH_PATTERN = re.compile(r"488B1248.{20,26}%s" % HEX_FIND, re.IGNORECASE)
+            PATCH_COMPLETE_PATTERN = re.compile(r"488B1248.{20,26}%s" % HEX_REPLACE, re.IGNORECASE)
     elif OS.MACOS:
         log.info("Setting globals to Linux macOS", silent=True)
         # The actual executable is inside the .app -> /.../stellaris.app/Contents/MacOS/stellaris
@@ -66,8 +65,8 @@ def update_patcher_globals():
         EXE_DEFAULT_FILENAME = "stellaris.wtf"
         HEX_FIND = "85C0"
         HEX_REPLACE = "31C0"
-        PATCH_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_FIND, re.IGNORECASE)
-        PATCH_COMPLETE_PATTERN = re.compile(r"C8CA018BF8%s" % HEX_REPLACE, re.IGNORECASE)
+        PATCH_PATTERN = re.compile(r"488B1248.{20,26}%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = re.compile(r"488B1248.{20,26}%s" % HEX_REPLACE, re.IGNORECASE)
 
     log.info(f"{EXE_DEFAULT_FILENAME=}", silent=True)
     log.info(f"{BIN_PATH_POSTPEND=}", silent=True)
@@ -79,7 +78,7 @@ def update_patcher_globals2():
     """
     Update Patcher Globals to patch modified checksum warning
     """
-    log.info("Updating Patcher Globals to patch modified checksum warning.", silent=True)
+    log.info("Updating Patcher Globals to patch modified checksum warning.")
     global EXE_DEFAULT_FILENAME, HEX_FIND, HEX_REPLACE, PATCH_PATTERN, BIN_PATH_POSTPEND, PATCH_COMPLETE_PATTERN
 
     if OS.WINDOWS:
@@ -88,8 +87,8 @@ def update_patcher_globals2():
         EXE_DEFAULT_FILENAME = "stellaris.exe"  # Game executable name plus extension
         HEX_FIND = "85C0"
         HEX_REPLACE = "31C0"
-        PATCH_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_FIND, re.IGNORECASE)
-        PATCH_COMPLETE_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_REPLACE, re.IGNORECASE)
+        PATCH_PATTERN = re.compile(r"E8399C1501%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = re.compile(r"E8399C1501%s" % HEX_REPLACE, re.IGNORECASE)
     elif OS.LINUX:
         if not OS.LINUX_PROTON:
             log.info("Setting globals to Linux Native", silent=True)
@@ -97,16 +96,16 @@ def update_patcher_globals2():
             EXE_DEFAULT_FILENAME = "stellaris"
             HEX_FIND = "85C0"
             HEX_REPLACE = "31C0"
-            PATCH_PATTERN = re.compile(r"8B30BF13219D03E86400DAFE%s" % HEX_FIND, re.IGNORECASE)
-            PATCH_COMPLETE_PATTERN = re.compile(r"8B30BF13219D03E86400DAFE%s" % HEX_REPLACE, re.IGNORECASE)
+            PATCH_PATTERN = re.compile(r"E4BBD9FE%s" % HEX_FIND, re.IGNORECASE)
+            PATCH_COMPLETE_PATTERN = re.compile(r"E4BBD9FE%s" % HEX_REPLACE, re.IGNORECASE)
         else:
             log.info("Setting globals to Linux Proton", silent=True)
             # Linux Proton (Windows equivalent?)
             EXE_DEFAULT_FILENAME = "stellaris.exe"
             HEX_FIND = "85C0"
             HEX_REPLACE = "31C0"
-            PATCH_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_FIND, re.IGNORECASE)
-            PATCH_COMPLETE_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_REPLACE, re.IGNORECASE)
+            PATCH_PATTERN = re.compile(r"E8399C1501%s" % HEX_FIND, re.IGNORECASE)
+            PATCH_COMPLETE_PATTERN = re.compile(r"E8399C1501%s" % HEX_REPLACE, re.IGNORECASE)
     elif OS.MACOS:
         log.info("Setting globals to Linux macOS", silent=True)
         # The actual executable is inside the .app -> /.../stellaris.app/Contents/MacOS/stellaris
@@ -122,16 +121,14 @@ def update_patcher_globals2():
         EXE_DEFAULT_FILENAME = "stellaris.wtf"
         HEX_FIND = "85C0"
         HEX_REPLACE = "31C0"
-        PATCH_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_FIND, re.IGNORECASE)
-        PATCH_COMPLETE_PATTERN = re.compile(r"3401E8C9971501%s" % HEX_REPLACE, re.IGNORECASE)
+        PATCH_PATTERN = re.compile(r"E8399C1501%s" % HEX_FIND, re.IGNORECASE)
+        PATCH_COMPLETE_PATTERN = re.compile(r"E8399C1501%s" % HEX_REPLACE, re.IGNORECASE)
 
     log.info(f"{EXE_DEFAULT_FILENAME=}", silent=True)
     log.info(f"{BIN_PATH_POSTPEND=}", silent=True)
     log.info(f"{HEX_FIND=}", silent=True)
     log.info(f"{HEX_REPLACE=}", silent=True)
     log.info(f"{PATCH_PATTERN=}", silent=True)
-
-TITLE_NAME = "Stellaris"  # Steam title name
 
 
 def locate_game_executable() -> Union[Path, None]:
@@ -140,11 +137,7 @@ def locate_game_executable() -> Union[Path, None]:
     """
     log.info("Locating game install...")
 
-    if not OS.LINUX_PROTON:
-        stellaris_install_path = steam.get_game_install_path(TITLE_NAME)
-    else:
-        stellaris_install_path = steam.get_game_install_path(TITLE_NAME)
-
+    stellaris_install_path = steam.get_game_install_path("Stellaris")
     log.debug(f"{stellaris_install_path=}")
 
     if stellaris_install_path:
@@ -167,7 +160,7 @@ def locate_game_executable() -> Union[Path, None]:
 def is_patched(file_path: Path) -> bool:
     _fwd_slashed_path = str(file_path).replace('\\', '/').replace('\\\\', '/')
     log.info(f"Checking if patched: {_fwd_slashed_path}")
-    log.info(f"Patched pattern: {PATCH_PATTERN.pattern}")
+    log.info(f"Patched pattern: {PATCH_COMPLETE_PATTERN.pattern}")
 
     with open(file_path, 'rb') as file:
         binary_data = file.read()

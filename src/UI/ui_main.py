@@ -421,11 +421,13 @@ class StellarisChecksumPatcherGUI(QWidget):
                 fcc_data = json.load(fcc_file)
             log.info("Stellaris version detected: " + fcc_data["version"])
 
+            log.info("Updating Patcher Globals to enable Achievements with mods.")
+
             # Check if it is patched
             is_patched = stellaris_patch.is_patched(game_executable)
 
             if is_patched:
-                log.info("File is already patched")
+                log.info("First patch is already applied!")
             else:
                 # Create a backup
                 if OS.MACOS:
@@ -447,8 +449,14 @@ class StellarisChecksumPatcherGUI(QWidget):
                     self.set_terminal_clickable(True)
                     return False
                 
-                # 2nd Patch, to remove checksum modified tooltip.
-                update_patcher_globals2()
+            # 2nd Patch, to remove checksum modified tooltip.
+            update_patcher_globals2()
+
+            is_patched = stellaris_patch.is_patched(game_executable)
+            if is_patched:
+                log.info("Second patch is already applied!")
+            else:
+
                 patched = stellaris_patch.patch(game_executable)
                 self.is_patching = False
 
@@ -458,9 +466,8 @@ class StellarisChecksumPatcherGUI(QWidget):
                     self.set_terminal_clickable(True)
                     return False
 
-        self.terminal_display_log(' ')
-
-        log.info("Finished. Close the patcher and go play!")
+                self.terminal_display_log(' ')
+                log.info("Finished. Close the patcher and go play!")
 
         self.set_terminal_clickable(True)
 

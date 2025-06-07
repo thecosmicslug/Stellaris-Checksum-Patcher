@@ -17,7 +17,9 @@ VSCode can be downloaded free from https://code.visualstudio.com/docs/setup/linu
 From the built-in terminal we can setup the dependencies needed:
 
 * `pip install PySide6`
-* `pip install vdf`
+* ``
+* `pip install requests`
+* `pip install chardet`
 * `pipx install auto-py-to-exe`
 
 It is important to run these commands from the built-in terminal or it will likely fail. 
