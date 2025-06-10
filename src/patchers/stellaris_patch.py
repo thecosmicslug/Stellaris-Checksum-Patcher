@@ -288,7 +288,6 @@ def patch(file_path: Path)-> bool:
             with open(file_path, 'wb') as file:
                 file.write(binary_data_patched)
 
-            log.info("Patch applied successfully.")
             patch_success = True
         else:
             log.error(f"Pattern found but unable to locate '{HEX_FIND}' in the matched line.")

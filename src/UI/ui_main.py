@@ -448,7 +448,9 @@ class StellarisChecksumPatcherGUI(QWidget):
                     log.error(f"Failed to apply first patch.")
                     self.set_terminal_clickable(True)
                     return False
-                
+                else:
+                    log.info("First patch applied successfully.")
+
             # 2nd Patch, to remove checksum modified tooltip.
             update_patcher_globals2()
 
@@ -465,7 +467,9 @@ class StellarisChecksumPatcherGUI(QWidget):
                     log.error(f"Failed to apply second patch.")
                     self.set_terminal_clickable(True)
                     return False
-
+                else:
+                    log.info("Second patch applied successfully.")
+                    
                 self.terminal_display_log(' ')
                 log.info("Finished. Close the patcher and go play!")
 
