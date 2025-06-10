@@ -40,8 +40,9 @@ def update_patcher_globals():
             EXE_DEFAULT_FILENAME = "stellaris"
             HEX_FIND = "85DB"
             HEX_REPLACE = "31DB"
-            PATCH_PATTERN = re.compile(r"488B30.{20,50}%s" % HEX_FIND, re.IGNORECASE)
-            PATCH_COMPLETE_PATTERN = re.compile(r"488B30.{20,50}%s" % HEX_REPLACE, re.IGNORECASE)
+            
+            PATCH_PATTERN = re.compile(r"E89B56600031F6%s" % HEX_FIND, re.IGNORECASE)
+            PATCH_COMPLETE_PATTERN = re.compile(r"E89B56600031F6%s" % HEX_REPLACE, re.IGNORECASE)
         else:
             log.info("Setting globals to Linux Proton", silent=True)
             # Linux Proton (Windows equivalent?)
